@@ -16,12 +16,7 @@ export const getBooksMatch = async (setMatch) => {
   }
 };
 
-export const getBooks = async (
-  setResults,
-  setReading,
-  setRead,
-  setCuriosRead
-) => {
+export const getBooks = async (setReading, setRead, setCuriosRead) => {
   const abortController = new AbortController();
   let readings = [];
   let reads = [];
@@ -35,7 +30,6 @@ export const getBooks = async (
       },
     });
     let datas = res.data.books;
-    setResults(datas);
     datas.forEach((element) => {
       if (element.shelf === "currentlyReading") {
         readings.push(element);

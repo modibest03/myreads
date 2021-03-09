@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as booksApi from "./apis";
 import Books from "./Books";
 
@@ -7,15 +7,10 @@ const Home = () => {
   const [curiousRead, setCuriosRead] = useState([]);
   const [reading, setReading] = useState([]);
   const [read, setRead] = useState([]);
-  const [results, setResults] = useState([]);
-
-  // console.log(results);
 
   useEffect(() => {
-    booksApi.getBooks(setResults, setReading, setRead, setCuriosRead);
-  }, [setResults, setReading, setRead, setCuriosRead]);
-
-  // console.log(read);
+    booksApi.getBooks(setReading, setRead, setCuriosRead);
+  }, [setReading, setRead, setCuriosRead]);
 
   return (
     <div>

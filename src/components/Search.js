@@ -51,7 +51,7 @@ const Search = () => {
         <div className="search-books-input-wrapper">
           <input
             type="text"
-            value={query}
+            value={query.trim()}
             name="query"
             onChange={handleChange}
             placeholder="Search by title or author"
