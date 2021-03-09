@@ -14,16 +14,22 @@ const Search = () => {
   useEffect(() => {
     const abortController = new AbortController();
     if (query.length > 0) {
-      booksApi.getSearch(query, setError, setSearch);
-      booksApi.getBooksMatch(setMatch);
-      return function cleanup() {
-        abortController.abort();
-      };
+      booksApi.getSearch(query, setSearch);
+      console.log(search);
+      if (search.error) {
+        setError(search.error);
+        setResult([]);
+      } else {
+        booksApi.getBooksMatch(setMatch);
+        return function cleanup() {
+          abortController.abort();
+        };
+      }
     } else {
       setResult([]);
       setError("");
     }
-  }, [query]);
+  }, [query, search]);
 
   useEffect(() => {
     const handleBookShelf = (searchBooks) => {
@@ -34,6 +40,7 @@ const Search = () => {
     };
     if (search.length > 0 && match.length > 0) {
       const matchBooks = handleBookShelf(search);
+      console.log(matchBooks);
       setResult(matchBooks);
     }
   }, [match, search]);
@@ -51,7 +58,7 @@ const Search = () => {
         <div className="search-books-input-wrapper">
           <input
             type="text"
-            value={query.trim()}
+            value={query}
             name="query"
             onChange={handleChange}
             placeholder="Search by title or author"

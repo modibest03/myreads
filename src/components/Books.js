@@ -34,8 +34,6 @@ const Books = ({ book }) => {
             data: { pdfBook, shelf },
           });
           let datas = await res.data;
-          console.log(datas);
-          console.log(pdfBook.id);
           setSelectedValue(pdfBook.id);
           if (location.pathname === "/search") {
             history.push("/");

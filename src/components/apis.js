@@ -74,7 +74,7 @@ export const getBook = async (bookId, setBookId) => {
   }
 };
 
-export const getSearch = async (query, setError, setSearch) => {
+export const getSearch = async (query, setSearch) => {
   try {
     const res = await axios({
       method: "post",
@@ -85,12 +85,8 @@ export const getSearch = async (query, setError, setSearch) => {
       data: { query },
     });
     const data = await res.data.books;
-    if (data.error) {
-      setError(data.error);
-      setSearch([]);
-    } else {
-      setSearch(data);
-    }
+    console.log(data);
+    setSearch(data);
   } catch (error) {
     console.log(error);
   }
